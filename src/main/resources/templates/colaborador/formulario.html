@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{base :: head}"></head>
+<body>
+<div th:replace="~{base :: logo}"></div>
+<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+
+    <div class="card mt-3">
+  <!--        Tymeleaf preenche dinamicamente o contexto da url, add automaticamente (Ex: /mudi/pedido/novo)-->
+        <form th:action="@{/pedido/novo}" th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
+
+            <!-- add o tymlef pra gerenciar o campo e integrar com o validation, trazendo preenchido-->
+            <div class="form-group">
+                <label for="nomeColaborador">Nome</label>
+                <input th:field="*{nomeColaborador}" th:errorclass="is-invalid" class="form-control" id="nomeColaborador"
+                       placeholder="Nome do Colaborador">
+                <small>Informe o nome do colaborador.</small>
+                <div class="invalid-feedback" th:errors="*{nomeColaborador}">
+                    Erros do nome do colaborador.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input th:field="*{email}" th:errorclass="is-invalid" class="form-control" id="email"
+                       placeholder="Email do colaborador">
+                <small>Informe o email do colaborador.</small>
+                <div class="invalid-feedback" th:errors="*{email}">
+                    Erros do email.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input th:field="*{senha}" th:errorclass="is-invalid" class="form-control" id="senha"
+                       placeholder="Senha do Colaborador">
+                <small>Digite a senha do colaborador.</small>
+                <div class="invalid-feedback" th:errors="*{senha}">
+                    Erros da senha.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento</label>
+                <textarea th:field="*{dataNascimento}" class="form-control" id="dataNascimento"
+                          placeholder="Data de Nascimento do Colaborador"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
